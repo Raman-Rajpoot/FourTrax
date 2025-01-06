@@ -1,0 +1,290 @@
+/* General Styling */
+body {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    
+  }
+  
+
+  
+  /* Toolbar */
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Toolbar Buttons */
+  .toolbar-btn {
+    background-color: #1f1f1f;
+    color: #ffffff;
+    padding: 10px 16px;
+    font-size: 14px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .toolbar-btn:hover {
+    background-color: #333;
+    color: #00b4d8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 180, 216, 0.2);
+  }
+  
+  .toolbar-btn:active {
+    background-color: #444;
+    transform: translateY(0);
+    box-shadow: none;
+  }
+  
+  /* Dropdown Button */
+  .dropdown {
+    position: relative;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    background-color: #1f1f1f;
+    border: 1px solid #333;
+    border-radius: 5px;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .dropdown-content button {
+    background-color: #1f1f1f;
+    color: #ffffff;
+    border: none;
+    padding: 8px 12px;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+  
+  .dropdown-content button:hover {
+    background-color: #333;
+    color: #00b4d8;
+  }
+  
+  /* Labels */
+  .toolbar-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #f0f0f0;
+  }
+  
+  input[type="color"] {
+    border: none;
+    background: none;
+    height: 0;
+    width: 0;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  /* Editor Content */
+  .editor-content {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    width: 65vw;
+    height: 400px;
+    border: 1px solid #323232;
+    border-radius: 5px;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 16px;
+    line-height: 1.5;
+    transition: all 0.3s ease;
+    letter-spacing: 1.1px;
+    margin-top: 2rem;
+  }
+  
+  .editor-content:focus {
+    border-color: #5c35d1cf;
+    box-shadow: 0 4px 10px rgba(18, 177, 209, 0.2);
+  }
+  
+  /* Scrollbar Styling */
+  .editor-content::-webkit-scrollbar {
+    width: 3px;
+    background-color: transparent;
+  }
+  
+  .editor-content::-webkit-scrollbar-thumb {
+    background-color: #00f7ffc3;
+    border-radius: 3px;
+  }
+  
+  .editor-content::-webkit-scrollbar-thumb:hover {
+    background-color: #777;
+  }
+  
+  /* ProseMirror reset styles */
+  .editor-content .ProseMirror {
+    padding-left: 5px;
+    margin: 0;
+    background-color: #5a585828;
+  }
+  
+  .ProseMirror:focus {
+    outline: none;
+    border: none;
+    background-color: #49857b30;
+    
+  }
+  /* Heading Buttons */
+  .heading-btn {
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 8px 14px;
+  }
+  
+  /* Animations */
+  @keyframes buttonHover {
+    0% {
+      transform: scale(1);
+      box-shadow: none;
+    }
+    50% {
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0, 180, 216, 0.3);
+    }
+    100% {
+      transform: scale(1);
+      box-shadow: none;
+    }
+  }
+  
+  .toolbar-btn:hover {
+    animation: buttonHover 0.5s ease-in-out;
+  }
+  
+  /* Center Alignment Button */
+  .center-btn {
+    padding: 8px 14px;
+    font-weight: bold;
+    background-color: #1f1f1f;
+    color: #ffffff;
+    border-radius: 5px;
+    border: 1px solid #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .center-btn:hover {
+    background-color: #333;
+    color: #00b4d8;
+  }
+  
+  .center-btn:active {
+    background-color: #444;
+    transform: translateY(0);
+    box-shadow: none;
+  }
+  
+  /* Highlight Button */
+  .btn {
+    padding: 8px 16px;
+    background-color: #1f1f1f;
+    color: #ffffff;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #333;
+    color: #00b4d8;
+  }
+  
+  /* Additional Custom Styles */
+  .btn {
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 5px;
+    background-color: #1f1f1f;
+    color: #ffffff;
+    font-size: 14px;
+    border: 1px solid #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #333;
+    color: #00b4d8;
+  }
+  .header{
+    text-align: center;
+    animation: fadeIn 2s ease-in-out;
+    font-size: 2.5rem;
+    color: #f0f0f0;
+    margin-bottom: 2.5rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+  .nav-bar, .nav-bar-color {
+    display: flex;
+    flex-wrap: wrap;
+    /* align-items: center; */
+    gap: 1rem;
+     }
+  .highlight img{
+     width: 30px;
+     height: 30px;
+  }
+  .highlight{
+    display: flex;
+    align-items: center;
+  }
+  .color{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .save-btn{
+    margin-top: 1rem;
+    background-color: #fff;
+    position: absolute;
+    right: 15rem;
+    width: 5rem;
+    color: black;
+    font-weight: bold;
+  }
+  .saved-content{
+    color: #03caf2;
+  }
