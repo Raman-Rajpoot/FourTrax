@@ -6,7 +6,7 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     
   }
@@ -107,7 +107,7 @@ body {
   .editor-content {
     background-color: #1e1e1e;
     color: #ffffff;
-    width: 65vw;
+    /* width: 65vw; */
     height: 400px;
     border: 1px solid #323232;
     border-radius: 5px;
