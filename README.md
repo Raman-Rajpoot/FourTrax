@@ -1,10 +1,10 @@
-<h1 align="center">Customizable Text Editor</h1>
-HOST LINK : https://fourtrax.onrender.com/    (wait some time for load)
+<h1 align="center">Customizable Text Editor</h1> 
 <p align="center">
   <strong>A modern, feature-rich text editor built using ReactJS and Tiptap.</strong>
 </p>
 
 <hr>
+HOST LINK : https://fourtrax.onrender.com/ 
 
 <h2>✨ Features</h2>
 
