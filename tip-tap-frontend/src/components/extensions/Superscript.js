@@ -24,20 +24,31 @@ const Superscript = Mark.create({
       toggleSuperscript:
         () =>
         ({ state, dispatch }) => {
-          const tr = state.tr;
-          const { from, to } = state.selection;
+          const { tr, schema, selection } = state;
+          const { from, to } = selection;
+          const markType = schema.marks.superscript; // Use the mark type
 
-          state.doc.nodesBetween(from, to, (node, pos) => {
-            if (node.isTextblock) {
-              tr.removeMark(from, to, this.name);
+          // Check if the mark is active in the selection
+          let markActive = false;
+          state.doc.nodesBetween(from, to, (node) => {
+            if (markType.isInSet(node.marks)) {
+              markActive = true;
             }
           });
 
-          if (tr.docChanged) {
+          if (markActive) {
+            // If the mark is active, remove it
+            tr.removeMark(from, to, markType);
+          } else {
+            // Otherwise, add the mark
+            tr.addMark(from, to, markType.create());
+          }
+
+          if (dispatch) {
             dispatch(tr);
           }
 
-          return tr.setSelection(state.selection).addMark(from, to, this.createMark());
+          return true;
         },
     };
   },

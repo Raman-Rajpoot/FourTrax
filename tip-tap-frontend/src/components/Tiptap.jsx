@@ -91,13 +91,6 @@ const Tiptap = () => {
     editor.chain().focus().toggleSubscript().run(); 
   };
 
-  const toggleLowerCase = () => {
-    const selectedText = editor.getHTML(); // or a method to get the current text
-    if (selectedText) {
-      editor.chain().focus().setContent(selectedText.toLowerCase()).run();
-    }
-  };
-  
   // Save the editor content
   const saveContent = () => {
     setSavedContent(editor.getHTML()); 

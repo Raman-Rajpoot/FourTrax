@@ -6,7 +6,7 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     
   }
@@ -284,7 +284,4 @@ body {
     width: 5rem;
     color: black;
     font-weight: bold;
-  }
-  .saved-content{
-    color: #03caf2;
   }
