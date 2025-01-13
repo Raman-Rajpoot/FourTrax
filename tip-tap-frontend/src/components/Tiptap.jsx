@@ -21,6 +21,7 @@ import TextOpacity from './extensions/TextOpecity.js';
 import DropdownText from './extensions/DropdownText.js';
 import ReverseText from './extensions/ReverseText'
 // import Tooltip from './extensions/ToolTip.js';
+import DynamicColor  from './extensions/DynamicColor.js';
 import { Editor } from '@tiptap/core';
 const Tiptap = () => {
   const [underlineStyle, setUnderlineStyle] = useState('solid');
@@ -49,8 +50,9 @@ const Tiptap = () => {
       DropdownText,
       ReverseText,
       // Tooltip,
+      DynamicColor ,
     ],
-    content: '<p>Click on a word to make it a dropdown or set it at the top</p>',
+    content: '<p>smaple text for new btn</p>',
   });
 
   if (!editor) return null;
@@ -120,33 +122,15 @@ const Tiptap = () => {
   const removeOpacity = () => {
     editor.chain().focus().unsetOpacity().run();
   };
+ // Function to apply dynamic color
+ const applyDynamicColor = () => {
+    editor.chain().focus().setDynamicColor().run();
+};
 
-  // const editorRef = useRef(null);
-
-  // useEffect(() => {
-  //   const editor = new Editor({
-  //     element: editorRef.current,
-  //     extensions: [
-  //       StarterKit,
-  //       DropdownText,  // Register the custom extension
-  //     ],
-  //   });
-
-  //   return () => {
-  //     editor.destroy();
-  //   };
-  // }, []);
-
-  // Function to apply the dropdown effect to a word
-  const setDropdownText = (position) => {
-    editor.chain().focus().setDropdownText(position).run();
-  };
-
-
-  // const setTooltip = () => {
-  //   editor.chain().focus().setTooltip('This is a tooltip!').run();
-  // };
-
+// Function to remove dynamic color
+const removeDynamicColor = () => {
+    editor.chain().focus().unsetDynamicColor().run();
+};
   // Save the editor content
   const saveContent = () => {
     setSavedContent(editor.getHTML());
@@ -224,6 +208,18 @@ const Tiptap = () => {
           <button onClick={apply3DText} className='new-btn btn'>Apply 3D Text</button>
           <button onClick={remove3DText} className='btn new-btn'>Remove 3D Text</button>
         </div>
+        
+        <div>
+        <button onClick={applyDynamicColor} style={{ marginRight: '10px' }} className='btn new-btn'>
+          Animation Color
+        </button>
+        <button onClick={removeDynamicColor} className='btn new-btn'>Remove Animation Color</button>
+        </div>
+        
+       {/* <button onClick={setTooltip}>Set Tooltip</button> */}
+       <button onClick={() => editor.chain().focus().toggleReverseText().run()} className='btn new-btn'>
+          Mirror image
+        </button>
 
         <div>
           {/* Buttons to change opacity */}
@@ -234,12 +230,6 @@ const Tiptap = () => {
           <button onClick={() => applyOpacity(1)} className='btn new-btn'>Opacity 100%</button>
 
         </div>
-
-        {/* <button onClick={setTooltip}>Set Tooltip</button> */}
-        <button onClick={() => editor.chain().focus().toggleReverseText().run()} className='btn new-btn'>
-          Mirror image
-        </button>
-
 
       </div>
 

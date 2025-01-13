@@ -72,17 +72,5 @@ const Text3D = Mark.create({
   },
 });
 
-// Define the animation for the color change
-const style = document.createElement('style');
-style.innerHTML = `
-@keyframes colorChange {
-  0% { color: hsl(0, 100%, 50%); }
-  25% { color: hsl(120, 100%, 50%); }
-  50% { color: hsl(0, 0.00%, 100.00%); }
-  75% { color: hsl(191, 100.00%, 50.00%); }
-  100% { color: hsl(0, 100%, 50%); }
-}
-`;
-document.head.appendChild(style);
 
 export default Text3D;
