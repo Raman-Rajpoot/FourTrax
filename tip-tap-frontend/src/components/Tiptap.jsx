@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useEditor, EditorContent } from '@tiptap/react'; 
+import React, { useEffect, useRef, useState } from 'react';
+import { useEditor, EditorContent } from '@tiptap/react';
 import TextColor from './extensions/TextColor';
 import Underline from './extensions/Underline';
 import BoldItalic from './extensions/BoldItalic';
@@ -16,7 +16,12 @@ import Subscript from './extensions/Subscript';
 import Superscript from './extensions/Superscript';
 import TextTransform from './extensions/TextTransform.js';
 import StarterKit from '@tiptap/starter-kit';
-
+import Text3D from './extensions/Text3D';
+import TextOpacity from './extensions/TextOpecity.js';
+import DropdownText from './extensions/DropdownText.js';
+import ReverseText from './extensions/ReverseText'
+// import Tooltip from './extensions/ToolTip.js';
+import { Editor } from '@tiptap/core';
 const Tiptap = () => {
   const [underlineStyle, setUnderlineStyle] = useState('solid');
   const [isUnderlined, setIsUnderlined] = useState(false);
@@ -36,11 +41,16 @@ const Tiptap = () => {
       Highlight.configure({ color: '#fff' }),
       Heading,
       CenterAlignment,
-      Subscript,  
-      Superscript, 
+      Subscript,
+      Superscript,
       TextTransform,
+      Text3D,
+      TextOpacity,
+      DropdownText,
+      ReverseText,
+      // Tooltip,
     ],
-    content: '<p></p>',
+    content: '<p>Click on a word to make it a dropdown or set it at the top</p>',
   });
 
   if (!editor) return null;
@@ -80,20 +90,66 @@ const Tiptap = () => {
   };
 
   const toggleHeading = (level) => {
-    editor.chain().focus().toggleHeading( level ).run();
+    editor.chain().focus().toggleHeading(level).run();
   };
-  
-  const toggleSuperscript = ()=> {
-     editor.chain().focus().toggleSuperscript().run(); 
+
+  const toggleSuperscript = () => {
+    editor.chain().focus().toggleSuperscript().run();
   };
-  
+
   const toggleSubscript = () => {
-    editor.chain().focus().toggleSubscript().run(); 
+    editor.chain().focus().toggleSubscript().run();
   };
+
+  // Apply 3D Text
+  const apply3DText = () => {
+    editor.commands.setText3D('6px', '1000px');
+  };
+
+  // Remove 3D Text
+  const remove3DText = () => {
+    editor.commands.unsetText3D();
+  };
+
+
+  const applyOpacity = (opacity) => {
+    editor.chain().focus().setOpacity(opacity).run();
+  };
+
+  // Function to remove opacity
+  const removeOpacity = () => {
+    editor.chain().focus().unsetOpacity().run();
+  };
+
+  // const editorRef = useRef(null);
+
+  // useEffect(() => {
+  //   const editor = new Editor({
+  //     element: editorRef.current,
+  //     extensions: [
+  //       StarterKit,
+  //       DropdownText,  // Register the custom extension
+  //     ],
+  //   });
+
+  //   return () => {
+  //     editor.destroy();
+  //   };
+  // }, []);
+
+  // Function to apply the dropdown effect to a word
+  const setDropdownText = (position) => {
+    editor.chain().focus().setDropdownText(position).run();
+  };
+
+
+  // const setTooltip = () => {
+  //   editor.chain().focus().setTooltip('This is a tooltip!').run();
+  // };
 
   // Save the editor content
   const saveContent = () => {
-    setSavedContent(editor.getHTML()); 
+    setSavedContent(editor.getHTML());
   };
 
   return (
@@ -118,7 +174,7 @@ const Tiptap = () => {
           ))}
           <button key={7} onClick={() => toggleHeading(7)} className='btn'>{`Normal`}</button>
         </div>
-        
+
         {/* Formatting Buttons */}
         <div className="toolbar">
           <button onClick={() => toggleMark('Bold')} className='btn'> <b>B</b> </button>
@@ -141,24 +197,55 @@ const Tiptap = () => {
             />
           </label>
           <button onClick={toggleHighlight} className='btn'>Highlight</button>
-        </div> 
+        </div>
 
         {/* Text Color Picker */}
         <div className="color">
           <span>Text-color: </span>
           <ColorPicker editor={editor} />
         </div>
-         {/* Buttons for subscript and superscript */}
-          <button onClick={toggleSuperscript} className='btn'>Superscript</button>
-          <button onClick={toggleSubscript} className='btn'>Subscript</button>
+        {/* Buttons for subscript and superscript */}
+        <button onClick={toggleSuperscript} className='btn'>Superscript</button>
+        <button onClick={toggleSubscript} className='btn'>Subscript</button>
 
         {/* Buttons to trigger text transformations */}
-      <button onClick={() => editor.commands.toUpperCase()} className='btn'>Uppercase</button>
-      <button onClick={() => editor.commands.toLowerCase()} className='btn'>Lowercase</button>
-      <button onClick={() => editor.commands.toCapitalize()} className='btn'>Capitalize</button>
+        <button onClick={() => editor.commands.toUpperCase()} className='btn'>Uppercase</button>
+        <button onClick={() => editor.commands.toLowerCase()} className='btn'>Lowercase</button>
+        <button onClick={() => editor.commands.toCapitalize()} className='btn'>Capitalize</button>
 
-        
+
       </div>
+
+
+
+
+      <div className='new-extensions'>
+        <div>
+          <button onClick={apply3DText} className='new-btn btn'>Apply 3D Text</button>
+          <button onClick={remove3DText} className='btn new-btn'>Remove 3D Text</button>
+        </div>
+
+        <div>
+          {/* Buttons to change opacity */}
+          <button onClick={() => applyOpacity(0.05)} className='btn new-btn'>Opacity 5%</button>
+          <button onClick={() => applyOpacity(0.25)} className='btn new-btn'>Opacity 25%</button>
+          <button onClick={() => applyOpacity(0.5)} className='btn new-btn'>Opacity 50%</button>
+          <button onClick={() => applyOpacity(0.75)} className='btn new-btn'>Opacity 75%</button>
+          <button onClick={() => applyOpacity(1)} className='btn new-btn'>Opacity 100%</button>
+
+        </div>
+
+        {/* <button onClick={setTooltip}>Set Tooltip</button> */}
+        <button onClick={() => editor.chain().focus().toggleReverseText().run()} className='btn new-btn'>
+          Mirror image
+        </button>
+
+
+      </div>
+
+
+
+
 
       {/* Editor Content */}
       <EditorContent editor={editor} className="editor-content" />

@@ -105,7 +105,7 @@ body {
   
   /* Editor Content */
   .editor-content {
-    background-color: #1e1e1e;
+    background-color: #161616c4;
     color: #ffffff;
     /* width: 65vw; */
     height: 400px;
@@ -144,7 +144,7 @@ body {
   .editor-content .ProseMirror {
     padding-left: 5px;
     margin: 0;
-    background-color: #5a585828;
+    background-color: #362c2c53;
   }
   
   .ProseMirror:focus {
@@ -255,12 +255,16 @@ body {
         transform: translateY(0);
     }
 }
-  .nav-bar, .nav-bar-color {
+  .nav-bar, .nav-bar-color ,.new-extensions{
     display: flex;
     flex-wrap: wrap;
     /* align-items: center; */
     gap: 1rem;
      }
+     .new-extensions{
+      margin-top: 1rem;
+     }
+
   .highlight img{
      width: 30px;
      height: 30px;
@@ -285,3 +289,11 @@ body {
     color: black;
     font-weight: bold;
   }
+  .new-btn{
+    background-color: #fff;
+    color: black;
+   }
+   .new-btn:hover{
+    background-color: #1f1f1f;
+    color: #fff
+   }
